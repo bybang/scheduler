@@ -15,20 +15,50 @@ export default function Application(props) {
     day: "Monday",
     days: [],
     appointments: {},
-    interview: {},
+    interviewers: {},
   });
 
   const setDay = (day) => setState({ ...state, day });
   const dailyAppointments = getAppointmentsForDay(state, state.day);
+  const interviewers = getInterviewersForDay(state, state.day);
+
+  function bookInterview(id, interview) {
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview },
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment,
+    };
+
+    // put (/user, {email, pass}) => passing email, password
+    // 200 - 299? > successful request
+    // 200 ok > can send msg to the user
+    // check status code
+    // API/days .get(/api/days)
+
+    return axios
+      .put(`/api/appointments/${id}`, { interview })
+      .then((response) => {
+        setState({
+          ...state,
+          appointments,
+        });
+        console.log(response);
+      });
+  }
 
   const schedule = dailyAppointments.map((appointment) => {
     const interview = getInterview(state, appointment.interview);
 
     return (
       <Appointment
+        {...appointment}
         key={appointment.id}
         interview={interview}
-        {...appointment}
+        interviewers={interviewers}
+        bookInterview={bookInterview}
       />
     );
   });
