@@ -32,12 +32,6 @@ export default function Application(props) {
       [id]: appointment,
     };
 
-    // put (/user, {email, pass}) => passing email, password
-    // 200 - 299? > successful request
-    // 200 ok > can send msg to the user
-    // check status code
-    // API/days .get(/api/days)
-
     return axios
       .put(`/api/appointments/${id}`, { interview })
       .then((response) => {
@@ -45,8 +39,25 @@ export default function Application(props) {
           ...state,
           appointments,
         });
-        console.log(response);
       });
+  }
+
+  function cancelInterview(id) {
+    const appointment = {
+      ...state.appointments[id],
+      interview: null,
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment,
+    };
+
+    return axios.delete(`/api/appointments/${id}`).then((response) => {
+      setState({
+        ...state,
+        appointments,
+      });
+    });
   }
 
   const schedule = dailyAppointments.map((appointment) => {
@@ -59,6 +70,7 @@ export default function Application(props) {
         interview={interview}
         interviewers={interviewers}
         bookInterview={bookInterview}
+        cancelInterview={cancelInterview}
       />
     );
   });

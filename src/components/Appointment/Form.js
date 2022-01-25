@@ -24,7 +24,7 @@ export default function Form(props) {
             name="name"
             type="text"
             placeholder="Enter Student Name"
-            value={student}
+            value={props.value}
             onChange={(e) => setStudent(e.target.value)}
           />
         </form>
