@@ -11,6 +11,35 @@ export default function useApplicationData() {
 
   const setDay = (day) => setState({ ...state, day });
 
+  function getSpots(dayObj, appointments) {
+    let availableSpots = 0;
+    for (const id of dayObj.appointments) {
+      const appointment = appointments[id];
+      if (!appointment.interview) {
+        availableSpots++;
+      }
+    }
+    return availableSpots;
+  }
+
+  function updateSpots(today, days, appointments) {
+    const thisDay = days.find((day) => days.name === today);
+    const spots = getSpots(thisDay, appointments);
+
+    const updateThisDay = { ...thisDay, spots };
+
+    const newDays = days.map((day) =>
+      day.name === today ? updateThisDay : day
+    );
+    return newDays;
+    // day.appointment = [1,2,3,4,5]
+    // map through the appointment array?
+    // if (interview === null) {
+    // it is not availableSpot
+    // } else {availableSpots.push(rest of the component)}
+    // return availableSpots?
+  }
+
   function bookInterview(id, interview) {
     const appointment = {
       ...state.appointments[id],
@@ -53,35 +82,6 @@ export default function useApplicationData() {
         days,
       });
     });
-  }
-
-  function getSpots(dayObj, appointments) {
-    let availableSpots = 0;
-    for (const id of dayObj.appointments) {
-      appointment = appointments[id];
-      if (!appointment.interview) {
-        availableSpots++;
-      }
-    }
-    return availableSpots;
-  }
-
-  function updateSpots(today, days, appointments) {
-    const thisDay = days.find((day) => days.name === today);
-    const spots = getSpots(thisday, appointments);
-
-    const updateThisDay = { ...thisDay, spots };
-
-    const newDays = days.map((day) =>
-      day.name === today ? updateThisDay : day
-    );
-    return newDays;
-    // day.appointment = [1,2,3,4,5]
-    // map through the appointment array?
-    // if (interview === null) {
-    // it is not availableSpot
-    // } else {availableSpots.push(rest of the component)}
-    // return availableSpots?
   }
 
   useEffect(() => {
