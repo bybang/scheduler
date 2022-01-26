@@ -23,21 +23,15 @@ export default function useApplicationData() {
   }
 
   function updateSpots(today, days, appointments) {
-    const thisDay = days.find((day) => days.name === today);
+    const thisDay = days.find((day) => day.name === today);
     const spots = getSpots(thisDay, appointments);
 
     const updateThisDay = { ...thisDay, spots };
 
-    const newDays = days.map((day) =>
+    const updateDays = days.map((day) =>
       day.name === today ? updateThisDay : day
     );
-    return newDays;
-    // day.appointment = [1,2,3,4,5]
-    // map through the appointment array?
-    // if (interview === null) {
-    // it is not availableSpot
-    // } else {availableSpots.push(rest of the component)}
-    // return availableSpots?
+    return updateDays;
   }
 
   function bookInterview(id, interview) {

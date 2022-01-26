@@ -14,7 +14,6 @@ export default function useVisualMode(initial) {
 
     let copyHistory = history;
     copyHistory.pop();
-    console.log("copyHistroy arrray: ", copyHistory);
     setMode(copyHistory[copyHistory.length - 1]);
     setHistory(copyHistory);
   };
