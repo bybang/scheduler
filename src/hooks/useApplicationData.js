@@ -11,6 +11,7 @@ export default function useApplicationData() {
 
   const setDay = (day) => setState({ ...state, day });
 
+  // get available spots for the day provided
   function getSpots(dayObj, appointments) {
     let availableSpots = 0;
     for (const id of dayObj.appointments) {
@@ -22,6 +23,7 @@ export default function useApplicationData() {
     return availableSpots;
   }
 
+  // updates the spots in the left side bar if appointments get changed by user
   function updateSpots(today, days, appointments) {
     const thisDay = days.find((day) => day.name === today);
     const spots = getSpots(thisDay, appointments);

@@ -7,31 +7,32 @@ describe("Appointment", () => {
     // find the right day
     cy.contains("Monday");
   });
-  // it("should book an interview", () => {
-  //   cy.get("[alt=Add]").first().click();
 
-  //   cy.get("[data-testid=student-name-input]").type("Lydia Miller-Jones");
+  it("should book an interview", () => {
+    cy.get("[alt=Add]").first().click();
 
-  //   cy.get("[alt='Sylvia Palmer']").click();
+    cy.get("[data-testid=student-name-input]").type("Lydia Miller-Jones");
 
-  //   cy.contains("Save").click();
+    cy.get("[alt='Sylvia Palmer']").click();
 
-  //   cy.contains(".appointment__card--show", "Lydia Miller-Jones");
-  //   cy.contains(".appointment__card--show", "Sylvia Palmer");
-  // });
+    cy.contains("Save").click();
 
-  // it("should edit an interview", () => {
-  //   cy.get("[alt=Edit]").invoke("show").click();
+    cy.contains(".appointment__card--show", "Lydia Miller-Jones");
+    cy.contains(".appointment__card--show", "Sylvia Palmer");
+  });
 
-  //   cy.get("[data-testid=student-name-input]").clear().type("Different person");
+  it("should edit an interview", () => {
+    cy.get("[alt=Edit]").invoke("show").click();
 
-  //   cy.get("[alt='Tori Malcolm']").click();
+    cy.get("[data-testid=student-name-input]").clear().type("Different person");
 
-  //   cy.contains("Save").click();
+    cy.get("[alt='Tori Malcolm']").click();
 
-  //   cy.contains(".appointment__card--show", "Different person");
-  //   cy.contains(".appointment__card--show", "Tori Malcolm");
-  // });
+    cy.contains("Save").click();
+
+    cy.contains(".appointment__card--show", "Different person");
+    cy.contains(".appointment__card--show", "Tori Malcolm");
+  });
 
   it("should cancel an interview", () => {
     cy.get("[alt=Delete]").first().click({ force: true });

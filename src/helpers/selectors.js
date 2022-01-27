@@ -1,3 +1,4 @@
+// get appointments array for certain day
 export function getAppointmentsForDay(state, day) {
   let todaysAppointments = [];
   // iterate through passed state
@@ -13,7 +14,7 @@ export function getAppointmentsForDay(state, day) {
   return todaysAppointments;
 }
 
-// getting interview
+// get nested interview object if interview exsist
 export function getInterview(state, interview) {
   if (interview !== null) {
     return {
@@ -24,7 +25,7 @@ export function getInterview(state, interview) {
   return null;
 }
 
-//
+// get available interviewers for that day
 export function getInterviewersForDay(state, day) {
   // iterate through passed state
   const dayFound = state.days.find((x) => x.name === day);

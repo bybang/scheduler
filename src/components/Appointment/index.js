@@ -24,6 +24,7 @@ export default function Appointment(props) {
     props.interview ? SHOW : EMPTY
   );
 
+  // function that saves the interview
   function save(name, interviewer) {
     const interview = {
       student: name,
@@ -41,7 +42,8 @@ export default function Appointment(props) {
       });
   }
 
-  function deleting() {
+  // function that removes the interview
+  function remove() {
     transition(DELETE, true);
     props
       .cancelInterview(props.id)
@@ -73,7 +75,7 @@ export default function Appointment(props) {
       {mode === CONFIRM && (
         <Confirm
           onConfirm={() => {
-            deleting(props.id);
+            remove(props.id);
           }}
           onCancel={back}
           message={"Are you sure you'd like to delete?"}
