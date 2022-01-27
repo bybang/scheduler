@@ -13,6 +13,7 @@ export function getAppointmentsForDay(state, day) {
   return todaysAppointments;
 }
 
+// getting interview
 export function getInterview(state, interview) {
   if (interview !== null) {
     return {
@@ -23,6 +24,7 @@ export function getInterview(state, interview) {
   return null;
 }
 
+//
 export function getInterviewersForDay(state, day) {
   // iterate through passed state
   const dayFound = state.days.find((x) => x.name === day);
