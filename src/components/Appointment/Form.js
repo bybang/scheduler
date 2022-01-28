@@ -41,6 +41,7 @@ export default function Form(props) {
             type="text"
             placeholder="Enter Student Name"
             value={student}
+            onFocus={() => setError("")}
             onChange={(e) => setStudent(e.target.value)}
             data-testid="student-name-input"
           />

@@ -8,13 +8,12 @@ export default function InterviewerList(props) {
     InterviewerList.propTypes = {
       interviewers: PropTypes.array.isRequired,
     };
-
     return (
       <InterviewerListItem
         key={interviewer.id}
         name={interviewer.name}
         avatar={interviewer.avatar}
-        selected={interviewer.id === props.value}
+        selected={interviewer.id === props.value.id}
         setInterviewer={() => props.onChange(interviewer.id)}
       />
     );
